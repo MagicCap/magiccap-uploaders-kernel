@@ -8,12 +8,12 @@ import base64
 def v1_load_dir(d):
     """Loads V1 in directory form."""
     scandir = os.scandir(d)
-    items = []
+    items = {}
     for file in scandir:
         if file.is_file():
             loaded = json.load(open(file.path))
             loaded['icon'] = base64.encodebytes(open(os.path.join(d, loaded['icon']), "rb").read()).decode()
-            items.append(loaded)
+            items[file.name.split(".")[0]] = loaded
     return items
 
 
