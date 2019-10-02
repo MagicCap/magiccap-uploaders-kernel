@@ -1,0 +1,19 @@
+{
+    "name": "Imgur",
+    "description": "Imgur is an online image sharing community and image host founded by Alan Schaaf in 2009.",
+    "icon": "../icons/imgur.png",
+    "implementation": "http",
+    "spec": {
+        "method": "POST",
+        "url": "https://api.imgur.com/3/image",
+        "post_as": {
+            "type": "form",
+            "key": "image"
+        },
+        "headers": {
+            "Authorization": "Client-ID 5a085a33c43d27c"
+        },
+        "response_key": "data.link"
+    },
+    "config": {}
+}
