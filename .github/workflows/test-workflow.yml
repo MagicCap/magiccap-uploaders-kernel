@@ -1,0 +1,17 @@
+name: Run automated tests
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build the routes
+        run: cd ./routes && ./build.py && cd ..
+
+      - name: Get any dependancies
+        run: go get .
+
+      - name: Run tests
+        run: go test . -v
