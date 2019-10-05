@@ -24,4 +24,5 @@ func TestV1Import(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	t.Log("Everything imported fine!")
 }

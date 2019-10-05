@@ -52,10 +52,13 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 		Upload: func(Config map[string]interface{}, Data []byte, Filename string) (string, error) {
 			var URL string
 			var POSTData *bytes.Buffer
+			var ContentType *string
 			if spec.POSTAs.Type == "b64" {
 				URL = spec.URL + "?" + spec.POSTAs.Key + "=" + e.EncodeToString(Data)
 			} else if spec.POSTAs.Type == "raw" {
 				POSTData = bytes.NewBuffer(Data)
+				c := http.DetectContentType(Data)
+				ContentType = &c
 			} else if spec.POSTAs.Type == "multipart" {
 				buffer := new(bytes.Buffer)
 				writer := multipart.NewWriter(buffer)
@@ -79,6 +82,8 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 				}
 				POSTData = buffer
 				URL = spec.URL
+				c := writer.FormDataContentType()
+				ContentType = &c
 			} else if spec.POSTAs.Type == "urlencoded" {
 				u, err := form.EncodeToString(map[string]interface{}{
 					spec.POSTAs.Key: Data,
@@ -88,6 +93,8 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 				}
 				POSTData = bytes.NewBufferString(u)
 				URL = spec.URL
+				c := "application/x-www-form-urlencoded"
+				ContentType = &c
 			} else {
 				return "", errors.New("POST type not defined.")
 			}
@@ -99,6 +106,9 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 				for k, v := range *spec.Headers {
 					r.Header.Set(k, v)
 				}
+			}
+			if ContentType != nil {
+				r.Header.Set("Content-Type", *ContentType)
 			}
 			client := http.Client{
 				Timeout: 30 * time.Second,
@@ -120,7 +130,7 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 				return string(b), nil
 			} else {
 				var JSONMap map[string]interface{}
-				err := json.Unmarshal(b, JSONMap)
+				err := json.Unmarshal(b, &JSONMap)
 				if err != nil {
 					return "", err
 				}
