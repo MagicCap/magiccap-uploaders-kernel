@@ -22,3 +22,5 @@ jobs:
         run: go test ./tests -v
         env:
           ELIXIRE_TOKEN: ${{ secrets.ELIXIRE_TOKEN }}
+          RLME_TOKEN: ${{ secrets.RLME_TOKEN }}
+          MAGICCAP_INSTALL_ID: ${{ secrets.MAGICCAP_INSTALL_ID }}

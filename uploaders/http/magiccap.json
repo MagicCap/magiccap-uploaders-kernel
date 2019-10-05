@@ -1,0 +1,19 @@
+{
+  "name": "i.magiccap",
+  "description": "MagicCap's default and official uploader.",
+  "icon": "../icons/magiccap.png",
+  "implementation": "http",
+  "spec": {
+    "method": "POST",
+    "url": "https://i.magiccap.me/upload",
+    "post_as": {
+      "type": "multipart",
+      "key": "data"
+    },
+    "headers": {
+      "Authorization": "Bearer {install_id}"
+    },
+    "response": "%url%"
+  },
+  "config": {}
+}
