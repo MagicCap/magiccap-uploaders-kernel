@@ -12,9 +12,9 @@ func TestImgurUpload(t *testing.T) {
 	k := MagicCapKernel.Kernel{
 		Uploaders: map[string]*MagicCapKernelStandards.Uploader{},
 	}
-	f, err := ioutil.ReadFile("../routes/v1.json")
+	f, err := ioutil.ReadFile("../uploaders/v1.json")
 	if err != nil {
-		t.Error("Failed to open V1 routes. Does it exist?")
+		t.Error("Failed to open V1 uploaders. Does it exist?")
 	}
 	var j map[string]interface{}
 	err = json.Unmarshal(f, &j)
