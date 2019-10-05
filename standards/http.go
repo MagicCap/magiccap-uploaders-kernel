@@ -5,10 +5,13 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"gopkg.in/ajg/form.v1"
+	"io/ioutil"
 	"math"
 	"mime/multipart"
 	"net/http"
+	"net/textproto"
 	"strconv"
 	"strings"
 	"time"
@@ -56,7 +59,13 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 			} else if spec.POSTAs.Type == "multipart" {
 				buffer := new(bytes.Buffer)
 				writer := multipart.NewWriter(buffer)
-				part, err := writer.CreateFormFile(spec.POSTAs.Key, Filename)
+				if err != nil {
+					return "", err
+				}
+				h := make(textproto.MIMEHeader)
+				h.Set("Content-Disposition", fmt.Sprintf(`form-data; name="%s"; filename="%s"`, spec.POSTAs.Key, Filename))
+				h.Set("Content-Type", http.DetectContentType(Data))
+				part, err := writer.CreatePart(h)
 				if err != nil {
 					return "", err
 				}
@@ -98,14 +107,14 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 			if err != nil {
 				return "", err
 			}
+			defer resp.Body.Close()
+			b, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				return "", nil
+			}
 			ResponseType := math.Floor(float64(resp.StatusCode) / 100)
 			if ResponseType == 4 || ResponseType == 5 {
 				return "", errors.New("Uploader returned the status " + strconv.Itoa(resp.StatusCode) + ".")
-			}
-			var b []byte
-			_, err = resp.Body.Read(b)
-			if err != nil {
-				return "", nil
 			}
 			if spec.ResponseKey == nil {
 				return string(b), nil
