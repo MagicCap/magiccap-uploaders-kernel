@@ -13,7 +13,7 @@
     "headers": {
       "Authorization": "{elixire_token}"
     },
-    "response_key": "url"
+    "response": "%url%"
   },
   "config": {
     "API Token": {

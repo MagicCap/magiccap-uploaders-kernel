@@ -13,7 +13,7 @@
         "headers": {
             "Authorization": "Client-ID 5a085a33c43d27c"
         },
-        "response_key": "data.link"
+        "response": "%data.link%"
     },
     "config": {}
 }

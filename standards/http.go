@@ -30,7 +30,7 @@ type HTTPSpec struct {
 	URL string `json:"url"`
 	POSTAs *POSTAs `json:"post_as"`
 	Headers *map[string]string `json:"headers"`
-	ResponseKey *string `json:"response_key"`
+	Response *string `json:"response"`
 }
 
 // HTTPInit defines the HTTP standard.
@@ -137,7 +137,7 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 			if ResponseType == 4 || ResponseType == 5 {
 				return "", errors.New("Uploader returned the status " + strconv.Itoa(resp.StatusCode) + ".")
 			}
-			if spec.ResponseKey == nil {
+			if spec.Response == nil {
 				return string(b), nil
 			} else {
 				var JSONMap map[string]interface{}
@@ -145,21 +145,54 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 				if err != nil {
 					return "", err
 				}
-				Key := strings.Split(*spec.ResponseKey, ".")
-				MapContext := JSONMap
-				Last, Key := Key[len(Key)-1], Key[:len(Key)-1]
-				var ok bool
-				for _, v := range Key {
-					MapContext, ok = MapContext[v].(map[string]interface{})
-					if !ok {
-						return "", errors.New("A value in the uploader is not a string map.")
+				FinalURL := *spec.Response
+				for true {
+					full := ""
+					sub := ""
+					for _, char := range FinalURL {
+						if full != "" {
+							if char == '%' {
+								full += "%"
+								break
+							} else {
+								full += string(char)
+								sub += string(char)
+							}
+						} else if char == '%' {
+							full = "%"
+						}
 					}
+					if full == "" {
+						break
+					}
+					Key := strings.Split(sub, ".")
+					MapContext := JSONMap
+					Last, Key := Key[len(Key)-1], Key[:len(Key)-1]
+					var ok bool
+					for _, v := range Key {
+						MapContext, ok = MapContext[v].(map[string]interface{})
+						if !ok {
+							StrMapErr := errors.New("A value in the uploader is not a string map.")
+							i, err := strconv.Atoi(v)
+							if err != nil {
+								return "", StrMapErr
+							}
+							c, ok := MapContext[v].([]interface{})
+							if !ok || len(c) >= i {
+								return "", StrMapErr
+							}
+							MapContext = c[i].(map[string]interface{})
+						}
+					}
+					s, ok := MapContext[Last].(string)
+					if !ok {
+						return "", errors.New("The final value in the uploader is not a string.")
+					}
+					FinalURL = strings.Replace(FinalURL, full, s, 1)
+					full = ""
+					sub = ""
 				}
-				s, ok := MapContext[Last].(string)
-				if !ok {
-					return "", errors.New("The final value in the uploader is not a string.")
-				}
-				return s, nil
+				return FinalURL, nil
 			}
 		},
 	}, nil
