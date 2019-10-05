@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"gopkg.in/ajg/form.v1"
 	"io/ioutil"
+	"magiccap-uploaders-kernel/utils"
 	"math"
 	"mime/multipart"
 	"net/http"
@@ -53,6 +54,7 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 			var URL string
 			var POSTData *bytes.Buffer
 			var ContentType *string
+
 			if spec.POSTAs.Type == "b64" {
 				URL = spec.URL + "?" + spec.POSTAs.Key + "=" + e.EncodeToString(Data)
 			} else if spec.POSTAs.Type == "raw" {
@@ -98,12 +100,21 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 			} else {
 				return "", errors.New("POST type not defined.")
 			}
+			URL, err = utils.SubString(URL, Config)
+			if err != nil {
+				return "", err
+			}
+
 			r, err := http.NewRequest(spec.Method, URL, POSTData)
 			if err != nil {
 				return "", err
 			}
 			if spec.Headers != nil {
 				for k, v := range *spec.Headers {
+					v, err = utils.SubString(v, Config)
+					if err != nil {
+						return "", err
+					}
 					r.Header.Set(k, v)
 				}
 			}
