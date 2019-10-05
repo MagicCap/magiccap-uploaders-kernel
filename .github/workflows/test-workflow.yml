@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Build the routes
-        run: cd ./routes && ./build.py && cd ..
+        run: cd ./routes && python3 ./build.py && cd ..
 
       - name: Get any dependancies
         run: go get .
