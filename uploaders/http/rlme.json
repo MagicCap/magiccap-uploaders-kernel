@@ -1,0 +1,28 @@
+{
+  "name": "RATELIMITED.ME",
+  "description": "No bull****, just files.",
+  "icon": "../icons/rlme.png",
+  "implementation": "http",
+  "spec": {
+    "method": "POST",
+    "url": "https://api.ratelimited.me/upload/pomf?key={rlme_token}",
+    "post_as": {
+      "type": "multipart",
+      "key": "files[]"
+    },
+    "response": "https://{rlme_domain}/%files.0.url%"
+  },
+  "config": {
+    "Token": {
+      "value": "rlme_token",
+      "type": "password",
+      "required": true
+    },
+    "Domain": {
+      "value": "rlme_domain",
+      "type": "text",
+      "required": true,
+      "default": "ratelimited.me"
+    }
+  }
+}

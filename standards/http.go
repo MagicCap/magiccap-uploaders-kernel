@@ -167,30 +167,61 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 					}
 					Key := strings.Split(sub, ".")
 					MapContext := JSONMap
+					ArrContext := make([]interface{}, 0)
+					IsMap := true
 					Last, Key := Key[len(Key)-1], Key[:len(Key)-1]
 					var ok bool
 					for _, v := range Key {
-						MapContext, ok = MapContext[v].(map[string]interface{})
-						if !ok {
-							StrMapErr := errors.New("A value in the uploader is not a string map.")
+						if IsMap {
+							NewItem := MapContext[v]
+							MapContext, ok = NewItem.(map[string]interface{})
+							if !ok {
+								ArrContext = NewItem.([]interface{})
+								IsMap = false
+							}
+						} else {
+							// This is an array.
 							i, err := strconv.Atoi(v)
 							if err != nil {
-								return "", StrMapErr
+								return "", err
 							}
-							c, ok := MapContext[v].([]interface{})
-							if !ok || len(c) >= i {
-								return "", StrMapErr
+							Item := ArrContext[i]
+							MapContext, ok = Item.(map[string]interface{})
+							if !ok {
+								// Is this an array?
+								ArrContext, ok = Item.([]interface{})
+								if !ok {
+									return "", errors.New("Failed to parse as a map or an array.")
+								}
+								IsMap = false
+							} else {
+								IsMap = true
 							}
-							MapContext = c[i].(map[string]interface{})
 						}
 					}
-					s, ok := MapContext[Last].(string)
-					if !ok {
-						return "", errors.New("The final value in the uploader is not a string.")
+					var s string
+					if IsMap {
+						s, ok = MapContext[Last].(string)
+						if !ok {
+							return "", errors.New("The final value in the uploader is not a string.")
+						}
+					} else {
+						i, err := strconv.Atoi(Last)
+						if err != nil {
+							return "", err
+						}
+						s, ok = ArrContext[i].(string)
+						if !ok {
+							return "", errors.New("The final value in the uploader is not a string.")
+						}
 					}
 					FinalURL = strings.Replace(FinalURL, full, s, 1)
 					full = ""
 					sub = ""
+				}
+				FinalURL, err = utils.SubString(FinalURL, Config)
+				if err != nil {
+					return "", err
 				}
 				return FinalURL, nil
 			}
