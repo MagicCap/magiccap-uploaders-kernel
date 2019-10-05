@@ -7,7 +7,7 @@
         "method": "POST",
         "url": "https://api.imgur.com/3/image",
         "post_as": {
-            "type": "form",
+            "type": "multipart",
             "key": "image"
         },
         "headers": {
