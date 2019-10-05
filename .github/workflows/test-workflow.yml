@@ -20,3 +20,5 @@ jobs:
 
       - name: Run tests
         run: go test ./tests -v
+        env:
+          ELIXIRE_TOKEN: ${{ secrets.ELIXIRE_TOKEN }}

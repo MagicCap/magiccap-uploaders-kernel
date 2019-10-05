@@ -1,0 +1,25 @@
+{
+  "name": "elixi.re",
+  "description": "Lunae Bunae Elixirade",
+  "icon": "../icons/elixire.png",
+  "implementation": "http",
+  "spec": {
+    "method": "POST",
+    "url": "https://elixi.re/api/upload",
+    "post_as": {
+      "type": "multipart",
+      "key": "f"
+    },
+    "headers": {
+      "Authorization": "{elixire_token}"
+    },
+    "response_key": "url"
+  },
+  "config": {
+    "API Token": {
+      "value": "elixire_token",
+      "type": "text",
+      "required": true
+    }
+  }
+}
