@@ -1,5 +1,7 @@
 name: Run automated tests
 
+on: push
+
 jobs:
   test:
     runs-on: ubuntu-latest
