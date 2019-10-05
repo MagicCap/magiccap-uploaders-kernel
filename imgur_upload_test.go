@@ -36,5 +36,5 @@ func TestImgurUpload(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	println(url)
+	t.Log(url)
 }
