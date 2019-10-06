@@ -2,7 +2,6 @@
   "name": "elixi.re",
   "description": "Lunae Bunae Elixirade",
   "icon": "../icons/elixire.png",
-  "implementation": "http",
   "spec": {
     "method": "POST",
     "url": "https://elixi.re/api/upload",

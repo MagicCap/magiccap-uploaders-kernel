@@ -23,7 +23,6 @@ type UploaderStructure struct {
 	Name           string                  `json:"name"`
 	Description    string                  `json:"description"`
 	Config         map[string]ConfigOption `json:"config"`
-	Implementation string                  `json:"implementation"`
 	Spec           interface{}             `json:"spec"`
 }
 

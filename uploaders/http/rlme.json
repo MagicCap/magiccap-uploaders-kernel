@@ -2,7 +2,6 @@
   "name": "RATELIMITED.ME",
   "description": "No bull****, just files.",
   "icon": "../icons/rlme.png",
-  "implementation": "http",
   "spec": {
     "method": "POST",
     "url": "https://api.ratelimited.me/upload/pomf?key={rlme_token}",

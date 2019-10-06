@@ -2,7 +2,6 @@
   "name": "i.magiccap",
   "description": "MagicCap's default and official uploader.",
   "icon": "../icons/magiccap.png",
-  "implementation": "http",
   "spec": {
     "method": "POST",
     "url": "https://i.magiccap.me/upload",
