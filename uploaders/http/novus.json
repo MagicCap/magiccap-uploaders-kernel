@@ -1,0 +1,25 @@
+{
+  "name": "Lunus",
+  "description": "Simple screenshot & file sharing provided by SunburntRock89 and Red_Eye_Computing.",
+  "icon": "../icons/lunus.png",
+  "implementation": "http",
+  "spec": {
+    "method": "POST",
+    "url": "https://lunus.xyz/api/upload",
+    "post_as": {
+      "type": "multipart",
+      "key": "file"
+    },
+    "headers": {
+      "Authorization": "Bearer {novus_token}"
+    },
+    "response": "%url%"
+  },
+  "config": {
+    "API Token": {
+      "value": "novus_token",
+      "type": "text",
+      "required": true
+    }
+  }
+}
