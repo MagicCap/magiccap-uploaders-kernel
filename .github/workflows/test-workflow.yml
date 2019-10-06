@@ -24,4 +24,4 @@ jobs:
           ELIXIRE_TOKEN: ${{ secrets.ELIXIRE_TOKEN }}
           RLME_TOKEN: ${{ secrets.RLME_TOKEN }}
           MAGICCAP_INSTALL_ID: ${{ secrets.MAGICCAP_INSTALL_ID }}
-          LUNUS_TOKEN: ${{ secrets.LUNUS_TOKEN }}
+          NOVUS_TOKEN: ${{ secrets.NOVUS_TOKEN }}
