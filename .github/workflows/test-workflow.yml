@@ -26,4 +26,3 @@ jobs:
           MAGICCAP_INSTALL_ID: ${{ secrets.MAGICCAP_INSTALL_ID }}
           NOVUS_TOKEN: ${{ secrets.NOVUS_TOKEN }}
           FTW_TOKEN: ${{ secrets.FTW_TOKEN }}
-          FTP_HOSTNAME: 127.0.0.1
