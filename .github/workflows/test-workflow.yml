@@ -19,7 +19,7 @@ jobs:
         run: go get .
 
       - name: Starts the FTP server
-        run: sudo apt install -y python3.6-setuptools && python3.6 -m pip install pyftpdlib && npm i -g pm2 && pm2 start python3.6 -- ./ftp_server.py
+        run: sudo apt install -y python3-setuptools && python3.6 -m pip install pyftpdlib && npm i -g pm2 && pm2 start python3.6 -- ./ftp_server.py
 
       - name: Run tests
         run: go test ./tests -v
