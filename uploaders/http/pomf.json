@@ -1,0 +1,29 @@
+{
+  "name": "POMF",
+  "description": "Pomf is a simple file uploading and sharing platform.",
+  "icon": "../icons/pomf.png",
+  "spec": {
+    "method": "POST",
+    "url": "{pomf_domain}",
+    "post_as": {
+      "type": "multipart",
+      "key": "files[]"
+    },
+    "headers": {
+      "token": "{pomf_token}"
+    },
+    "response": "%files.0.url%"
+  },
+  "config": {
+    "Domain": {
+      "value": "pomf_domain",
+      "type": "text",
+      "required": true
+    },
+    "Token": {
+      "value": "pomf_token",
+      "type": "text",
+      "required": false
+    }
+  }
+}
