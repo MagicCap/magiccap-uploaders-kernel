@@ -19,7 +19,7 @@ jobs:
         run: go get .
 
       - name: Starts the FTP server
-        run: docker run -d -p 21:21 -p 21000-21010:21000-21010 -e USERS="anonymous|anonymous" -e ADDRESS="127.0.0.1" delfer/alpine-ftp-server
+        run: docker run -d -p 20-21:20-21 -p 65500-65515:65500-65515 -v /tmp:/var/ftp:ro metabrainz/docker-anon-ftp
 
       - name: Run tests
         run: go test ./tests -v
