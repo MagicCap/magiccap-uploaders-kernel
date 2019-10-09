@@ -25,3 +25,4 @@ jobs:
           RLME_TOKEN: ${{ secrets.RLME_TOKEN }}
           MAGICCAP_INSTALL_ID: ${{ secrets.MAGICCAP_INSTALL_ID }}
           NOVUS_TOKEN: ${{ secrets.NOVUS_TOKEN }}
+          FTW_TOKEN: ${{ secrets.FTW_TOKEN }}
