@@ -10,7 +10,7 @@ func TestSubString(t *testing.T) {
 		"hello": "Hello",
 		"world": "world",
 	}
-	subbed, err := utils.SubString("[SUB] {hello} {world}!", map_)
+	subbed, err := utils.SubString("[SUB] {hello} {world}!", map_, "")
 	if err != nil {
 		t.Error(err.Error())
 	} else {
