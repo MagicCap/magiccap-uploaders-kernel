@@ -100,7 +100,7 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 			} else {
 				return "", errors.New("POST type not defined.")
 			}
-			URL, err = utils.SubString(URL, Config)
+			URL, err = utils.SubString(URL, Config, Filename)
 			if err != nil {
 				return "", err
 			}
@@ -111,7 +111,7 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 			}
 			if spec.Headers != nil {
 				for k, v := range *spec.Headers {
-					v, err = utils.SubString(v, Config)
+					v, err = utils.SubString(v, Config, Filename)
 					if err != nil {
 						return "", err
 					}
@@ -219,7 +219,7 @@ func HTTPInit(Structure UploaderStructure) (*Uploader, error) {
 					full = ""
 					sub = ""
 				}
-				FinalURL, err = utils.SubString(FinalURL, Config)
+				FinalURL, err = utils.SubString(FinalURL, Config, Filename)
 				if err != nil {
 					return "", err
 				}

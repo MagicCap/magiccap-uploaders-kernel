@@ -1,0 +1,30 @@
+{
+  "name": "UltraShare",
+  "description": "UltraShare is an all in one server for screenshots, files, images, and links.",
+  "icon": "../icons/ultrashare.svg",
+  "spec": {
+    "method": "POST",
+    "url": "{ultra_host}/api/upload",
+    "post_as": {
+      "type": "raw"
+    },
+    "headers": {
+      "Authorization": "{ultra_key}",
+      "fileext": "{ext}",
+      "User-Agent": "MagicCapUltraShare/1.0"
+    },
+    "response": "%url%"
+  },
+  "config": {
+    "Hostname": {
+      "value": "ultra_host",
+      "type": "text",
+      "required": true
+    },
+    "API Key": {
+      "value": "ultra_key",
+      "type": "text",
+      "required": true
+    }
+  }
+}

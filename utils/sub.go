@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func SubString(v string, Config map[string]interface{}) (string, error) {
+func SubString(v string, Config map[string]interface{}, Filename string) (string, error) {
 	for true {
 		full := ""
 		sub := ""
@@ -28,11 +28,16 @@ func SubString(v string, Config map[string]interface{}) (string, error) {
 		c := Config[sub]
 		Result, ok := c.(string)
 		if !ok {
-			b, err := json.Marshal(&c)
-			if err != nil {
-				return "", err
+			if sub == "ext" {
+				s := strings.Split(Filename, ".")
+				Result = s[len(s)-1]
+			} else {
+				b, err := json.Marshal(&c)
+				if err != nil {
+					return "", err
+				}
+				Result = string(b)
 			}
-			Result = string(b)
 		}
 		v = strings.Replace(v, full, Result, 1)
 		full = ""
