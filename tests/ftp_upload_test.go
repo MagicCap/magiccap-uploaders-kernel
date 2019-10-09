@@ -49,6 +49,7 @@ func TestFTPUpload(t *testing.T) {
 	_, err = k.Uploaders["ftp"].Upload(map_, b, "magiccap.png")
 	if err != nil {
 		t.Error(err)
+		return
 	}
 	t.Log("Uploaded to the FTP server successfully.")
 }
