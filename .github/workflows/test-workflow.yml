@@ -19,7 +19,7 @@ jobs:
         run: go get .
 
       - name: Starts the FTP server
-        run: python3.7 -m pip install pyftpdlib && npm i -g pm2 && pm2 start python3.7 -- ./ftp_server.py
+        run: python3.6 -m pip install pyftpdlib && npm i -g pm2 && pm2 start python3.6 -- ./ftp_server.py
 
       - name: Run tests
         run: go test ./tests -v
