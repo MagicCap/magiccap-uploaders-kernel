@@ -19,7 +19,7 @@ jobs:
         run: go get .
 
       - name: Starts the FTP server
-        run: docker run -d -p 20-21:20-21 -p 65500-65515:65500-65515 -v /tmp:/var/ftp:ro metabrainz/docker-anon-ftp
+        run: docker run -d -p 20-21:20-21 -p 65500-65515:65500-65515 -v /tmp:/var/ftp metabrainz/docker-anon-ftp
 
       - name: Run tests
         run: go test ./tests -v
