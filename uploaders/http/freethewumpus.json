@@ -1,0 +1,24 @@
+{
+  "name": "freethewump.us",
+  "description": "freethewump.us is an extremely fast image host.",
+  "icon": "../icons/ftw.png",
+  "spec": {
+    "method": "POST",
+    "url": "https://freethewump.us",
+    "post_as": {
+      "type": "multipart",
+      "key": "file"
+    },
+    "headers": {
+      "Token": "{ftw_token}"
+    },
+    "response": "%url%"
+  },
+  "config": {
+    "Token": {
+      "value": "ftw_token",
+      "type": "password",
+      "required": true
+    }
+  }
+}
