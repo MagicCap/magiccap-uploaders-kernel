@@ -30,5 +30,6 @@ type UploaderStructure struct {
 func GetStandardsMap() map[string]func(Structure UploaderStructure) (*Uploader, error) {
 	return map[string]func(Structure UploaderStructure) (*Uploader, error){
 		"http": HTTPInit,
+		"ftp": FTPInit,
 	}
 }

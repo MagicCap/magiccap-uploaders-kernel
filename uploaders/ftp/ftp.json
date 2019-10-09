@@ -1,0 +1,47 @@
+{
+  "name": "Passive FTP",
+  "description": "The passive FTP client for MagicCap.",
+  "icon": "../icons/ftp.png",
+  "spec": {
+    "hostname": "{ftp_hostname}",
+    "port": "{ftp_port}",
+    "username": "{ftp_username}",
+    "password": "{ftp_password}",
+    "directory": "{ftp_directory}",
+    "base_url": "{ftp_domain}"
+  },
+  "config": {
+    "Hostname": {
+      "value": "ftp_hostname",
+      "type": "text",
+      "required": true
+    },
+    "Port": {
+      "value": "ftp_port",
+      "type": "integer",
+      "default": 21,
+      "required": true
+    },
+    "Username": {
+      "value": "ftp_username",
+      "type": "text",
+      "required": true
+    },
+    "Password": {
+      "value": "ftp_password",
+      "type": "password",
+      "required": true
+    },
+    "Directory": {
+      "value": "ftp_directory",
+      "type": "text",
+      "default": "/",
+      "required": true
+    },
+    "Base URL": {
+      "value": "ftp_domain",
+      "type": "text",
+      "required": true
+    }
+  }
+}
