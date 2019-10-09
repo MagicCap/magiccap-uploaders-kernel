@@ -1,0 +1,40 @@
+{
+  "name": "S3",
+  "description": "Support for S3-compatible services such as AWS S3 and DigitalOcean Spaces.",
+  "icon": "../icons/s3.png",
+  "spec": {
+    "access_key_id": "{s3_access_key_id}",
+    "secret_access_key": "{s3_secret_access_key}",
+    "endpoint": "{s3_endpoint}",
+    "bucket_name": "{s3_bucket_name}",
+    "bucket_url": "{s3_bucket_url}"
+  },
+  "config": {
+    "Access Key ID": {
+      "value": "s3_access_key_id",
+      "type": "text",
+      "required": true
+    },
+    "Secret Access Key": {
+      "value": "s3_secret_access_key",
+      "type": "text",
+      "required": true
+    },
+    "Endpoint": {
+      "value": "s3_endpoint",
+      "type": "text",
+      "required": true,
+      "default": "s3.eu-west-2.amazonaws.com"
+    },
+    "Bucket Name": {
+      "value": "s3_bucket_name",
+      "type": "text",
+      "required": true
+    },
+    "Bucket URL": {
+      "value": "s3_bucket_url",
+      "type": "text",
+      "required": true
+    }
+  }
+}
