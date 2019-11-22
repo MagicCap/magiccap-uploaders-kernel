@@ -3,8 +3,8 @@ package tests
 import (
 	"encoding/json"
 	"io/ioutil"
-	"magiccap-uploaders-kernel"
-	"magiccap-uploaders-kernel/standards"
+	"github.com/magiccap/magiccap-uploaders-kernel"
+	"github.com/magiccap/magiccap-uploaders-kernel/standards"
 	"testing"
 )
 

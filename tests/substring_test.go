@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"magiccap-uploaders-kernel/utils"
+	"github.com/magiccap/magiccap-uploaders-kernel/utils"
 	"testing"
 )
 

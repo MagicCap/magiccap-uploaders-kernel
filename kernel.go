@@ -3,7 +3,8 @@ package MagicCapKernel
 import (
 	"encoding/json"
 	"errors"
-	"magiccap-uploaders-kernel/standards"
+
+	MagicCapKernelStandards "github.com/magiccap/magiccap-uploaders-kernel/standards"
 )
 
 // Defines the kernel structure.

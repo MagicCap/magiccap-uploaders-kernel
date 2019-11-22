@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"gopkg.in/ajg/form.v1"
 	"io/ioutil"
-	"magiccap-uploaders-kernel/utils"
+	"github.com/magiccap/magiccap-uploaders-kernel/utils"
 	"math"
 	"mime/multipart"
 	"net/http"

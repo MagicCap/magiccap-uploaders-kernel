@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"github.com/jlaffaye/ftp"
-	"magiccap-uploaders-kernel/utils"
+	"github.com/magiccap/magiccap-uploaders-kernel/utils"
 	"time"
 )
 
