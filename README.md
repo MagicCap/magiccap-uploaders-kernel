@@ -1,4 +1,4 @@
-# github.com/magiccap/magiccap-uploaders-kernel
+# magiccap-uploaders-kernel
 The kernel for MagicCap uploaders.
 
 ## Adding uploaders to the MagicCap kernel
