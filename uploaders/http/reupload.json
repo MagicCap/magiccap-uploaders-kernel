@@ -1,0 +1,24 @@
+{
+    "name": "reupload.gg",
+    "description": "ReUpload.gg Sharing Service",
+    "icon": "../icons/reupload.png",
+    "spec": {
+        "method": "POST",
+        "url": "https://reupload.gg/v1/upload/image",
+        "post_as": {
+            "type": "multipart",
+            "key": "file"
+        },
+        "headers": {
+            "Authorization": "Bearer {reupload_token}"
+        },
+        "response": "%url%"
+    },
+    "config": {
+        "API Token": {
+            "value": "reupload_token",
+            "type": "text",
+            "required": true
+        }
+    }
+}
