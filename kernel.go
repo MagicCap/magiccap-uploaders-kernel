@@ -18,7 +18,7 @@ func (k Kernel) Load(V1File map[string]interface{}) error {
 	for Implementation, UploaderMap := range V1File {
 		Loader := StandardsMap[Implementation]
 		if Loader == nil {
-			return errors.New("Loader not found.")
+			continue
 		}
 		for key, v := range UploaderMap.(map[string]interface{}) {
 			b, err := json.Marshal(v)
