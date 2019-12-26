@@ -32,5 +32,6 @@ func GetStandardsMap() map[string]func(Structure UploaderStructure) (*Uploader, 
 		"http": HTTPInit,
 		"ftp":  FTPInit,
 		"s3":   S3Init,
+		"sxcu": SXCUInit,
 	}
 }

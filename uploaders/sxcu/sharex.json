@@ -1,0 +1,15 @@
+{
+  "name": "ShareX SXCU",
+  "description": "Provides SXCU file compatibility.",
+  "icon": "../icons/sharex.png",
+  "spec": {
+    "sxcu_data": "{sxcu_data}"
+  },
+  "config": {
+    "ShareX SXCU File": {
+      "value": "sxcu_data",
+      "type": "file",
+      "required": true
+    }
+  }
+}

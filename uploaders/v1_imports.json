@@ -1,4 +1,6 @@
 [
     ["http", "./http"],
-    ["ftp", "./ftp"]
+    ["ftp", "./ftp"],
+    ["s3", "./s3"],
+    ["sxcu", "./sxcu"]
 ]
