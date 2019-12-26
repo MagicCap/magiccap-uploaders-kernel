@@ -2,7 +2,6 @@ package MagicCapKernel
 
 import (
 	"encoding/json"
-	"errors"
 
 	MagicCapKernelStandards "github.com/magiccap/magiccap-uploaders-kernel/standards"
 )
