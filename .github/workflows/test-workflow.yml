@@ -27,3 +27,4 @@ jobs:
           NOVUS_TOKEN: ${{ secrets.NOVUS_TOKEN }}
           FTW_TOKEN: ${{ secrets.FTW_TOKEN }}
           REUPLOAD_TOKEN: ${{ secrets.REUPLOAD_TOKEN }}
+          SXCU_DATA: ${{ secrets.SXCU_DATA }}
