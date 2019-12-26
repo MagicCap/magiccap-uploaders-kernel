@@ -8,7 +8,7 @@
   "config": {
     "ShareX SXCU File": {
       "value": "sxcu_data",
-      "type": "file",
+      "type": "sxcu__EDGECASE",
       "required": true
     }
   }
