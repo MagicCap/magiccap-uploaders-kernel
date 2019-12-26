@@ -4,7 +4,7 @@
     "icon": "../icons/reupload.png",
     "spec": {
         "method": "POST",
-        "url": "https://reupload.gg/v1/upload/image",
+        "url": "https://api.reupload.gg/v1/upload/image",
         "post_as": {
             "type": "multipart",
             "key": "file"
