@@ -1,0 +1,29 @@
+{
+  "name": "shutter.host",
+  "description": "Shutter is one of the fastest image uploaders.",
+  "icon": "../icons/shutter.png",
+  "spec": {
+    "method": "POST",
+    "url": "https://shutter.host/api/upload",
+    "post_as": {
+      "type": "multipart",
+      "key": "file"
+    },
+    "headers": {
+      "Authorization": "{shtr_id}:{shtr_token}"
+    },
+    "response": "%url%"
+  },
+  "config": {
+    "Token": {
+      "value": "shtr_token",
+      "type": "password",
+      "required": true
+    },
+    "ID": {
+      "value": "shtr_id",
+      "type": "text",
+      "required": true
+    }
+  }
+}
