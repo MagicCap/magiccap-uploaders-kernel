@@ -1,36 +1,38 @@
-name: Build the iOS framework
-
+name: "Build the iOS framework"
 on: push
 
-jobs:
-  test:
+jobs: 
+  test: 
     runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: copy to ~/go/src
-        run: mkdir -p ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cp -r . ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cd ~/go/src/github.com/magiccap/magiccap-uploaders-kernel
-
-      - name: Get any dependencies
-        run: go get .
-
-      - name: Clone a fork of a repository which contains a iOS build of PCRE
-        run: git clone https://github.com/JakeMakesStuff/news-iOS-App
-
-      - name: Copy out the PCRE folder and remove the rest
-        run: cp -r ./news-iOS-App/pcre ~/pcre && rm -rf ./news-iOS-App
-
-      - name: Install gomobile
-        run: go get golang.org/x/mobile/cmd/gomobile && gomobile init
-
-      - name: Create the iOS framework
-        run: C_INCLUDE_PATH="$HOME/pcre/include" LIBRARY_PATH="$HOME/pcre/lib" gomobile bind -target ios
-
-      - name: zip the framework build
-        run: zip -vr ios_kernel.zip MagicCapKernel.framework/
-
-      - uses: actions/upload-artifact@v1
+    steps: 
+      - 
+        uses: actions/checkout@v1
+      - 
+        name: "copy to ~/go/src"
+        run: "mkdir -p ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cp -r . ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cd ~/go/src/github.com/magiccap/magiccap-uploaders-kernel"
+      - 
+        name: "Build the uploaders"
+        run: "cd ./uploaders && python3 ./build.py && cd .."
+      - 
+        name: "Get any dependencies"
+        run: "go get ."
+      - 
+        name: "Clone a fork of a repository which contains a iOS build of PCRE"
+        run: "git clone https://github.com/JakeMakesStuff/news-iOS-App"
+      - 
+        name: "Copy out the PCRE folder and remove the rest"
+        run: "cp -r ./news-iOS-App/pcre ~/pcre && rm -rf ./news-iOS-App"
+      - 
+        name: "Install gomobile"
+        run: "go get golang.org/x/mobile/cmd/gomobile && gomobile init"
+      - 
+        name: "Create the iOS framework"
+        run: 'C_INCLUDE_PATH="$HOME/pcre/include" LIBRARY_PATH="$HOME/pcre/lib" gomobile bind -target ios'
+      - 
+        name: "zip the framework build"
+        run: "zip -vr ios_kernel.zip MagicCapKernel.framework/"
+      - 
+        uses: "actions/upload-artifact@v1"
         with:
-          name: ios_kernel.zip
-          path: ios_kernel.zip
+          name: "ios_kernel.zip"
+          path: "ios_kernel.zip"
