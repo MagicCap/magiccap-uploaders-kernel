@@ -15,7 +15,7 @@ jobs:
       - name: Build the uploaders
         run: cd ./uploaders && python3 ./build.py && cd ..
 
-      - name: Get any dependancies
+      - name: Get any dependencies
         run: go get .
 
       - name: Run tests
