@@ -27,7 +27,7 @@ jobs:
         run: "go get golang.org/x/mobile/cmd/gomobile && PATH=\"$PATH:$HOME/go/bin\" gomobile init"
       - 
         name: "Create the iOS framework"
-        run: 'C_INCLUDE_PATH="$HOME/pcre/include" LIBRARY_PATH="$HOME/pcre/lib" PATH=\"$PATH:$HOME/go/bin\" gomobile bind -target ios'
+        run: 'C_INCLUDE_PATH="$HOME/pcre/include" LIBRARY_PATH="$HOME/pcre/lib" PATH="$PATH:$HOME/go/bin" gomobile bind -target ios'
       - 
         name: "zip the framework build"
         run: "zip -vr ios_kernel.zip MagicCapKernel.framework/"
