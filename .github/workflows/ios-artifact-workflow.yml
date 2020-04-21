@@ -5,11 +5,10 @@ jobs:
   test: 
     runs-on: macos-latest
     steps: 
+      -
+        uses: kineticengines/setup-android-actions@v0.1
       - 
         uses: actions/checkout@v1
-      -
-        name: "Run a SDK manager update"
-        run: "sdkmanager --update"
       - 
         name: "copy to ~/go/src"
         run: "mkdir -p ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cp -r . ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cd ~/go/src/github.com/magiccap/magiccap-uploaders-kernel"
