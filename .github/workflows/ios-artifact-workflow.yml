@@ -24,7 +24,7 @@ jobs:
         run: "cp -r ./news-iOS-App/pcre ~/pcre && rm -rf ./news-iOS-App"
       - 
         name: "Install gomobile"
-        run: "go get golang.org/x/mobile/cmd/gomobile"
+        run: "go get golang.org/x/mobile/cmd/gomobile && ~/go/bin/gomobile init"
       - 
         name: "Create the iOS framework"
         run: 'C_INCLUDE_PATH="$HOME/pcre/include" LIBRARY_PATH="$HOME/pcre/lib" ~/go/bin/gomobile bind -target ios'
