@@ -6,12 +6,12 @@ import (
 	MagicCapKernelStandards "github.com/magiccap/magiccap-uploaders-kernel/standards"
 )
 
-// Defines the kernel structure.
+// Kernel defines the kernel structure.
 type Kernel struct {
 	Uploaders map[string]*MagicCapKernelStandards.Uploader
 }
 
-// Loads a map of uploaders from V1.
+// Load loads a map of uploaders from V1.
 func (k Kernel) Load(V1File map[string]interface{}) error {
 	StandardsMap := MagicCapKernelStandards.GetStandardsMap()
 	for Implementation, UploaderMap := range V1File {
