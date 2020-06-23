@@ -8,9 +8,6 @@ jobs:
       -
         uses: actions/checkout@v1
       -
-        name: "copy to ~/go/src"
-        run: "mkdir -p ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cp -r . ~/go/src/github.com/magiccap/magiccap-uploaders-kernel && cd ~/go/src/github.com/magiccap/magiccap-uploaders-kernel"
-      -
         name: "Build the uploaders"
         run: "cd ./uploaders && python3 ./build.py && cd .."
       -
