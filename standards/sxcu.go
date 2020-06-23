@@ -18,7 +18,7 @@ import (
 	"time"
 
 	"github.com/antchfx/xmlquery"
-	"github.com/glenn-brown/golang-pkg-pcre/src/pkg/pcre"
+	"github.com/dlclark/regexp2"
 	"github.com/jakemakesstuff/structuredhttp"
 	"github.com/yalp/jsonpath"
 )
@@ -158,16 +158,27 @@ func ShareXParamHandler(Data string, Filename string, Response string, ResponseU
 		if n >= len(Regex) {
 			return "", errors.New("Regex index does not exist.")
 		}
-		re, rerr := pcre.Compile(Regex[n], pcre.JAVASCRIPT_COMPAT)
-		if rerr != nil {
-			return "", errors.New(rerr.String())
+		re, err := regexp2.Compile(Regex[n], regexp2.None)
+		if err != nil {
+			return "", err
 		}
-		m := re.MatcherString(Response, pcre.JAVASCRIPT_COMPAT)
+		m, err := re.FindStringMatch(Response)
+		if err != nil {
+			return "", err
+		}
 		capn, err := strconv.Atoi(group)
 		if err == nil {
-			return m.GroupString(capn), nil
+			g := m.GroupByNumber(capn)
+			if g == nil {
+				return "", errors.New("regex group does not exist")
+			}
+			return g.String(), nil
 		} else {
-			return m.NamedString(group), nil
+			g := m.GroupByName(group)
+			if g == nil {
+				return "", errors.New("regex group does not exist")
+			}
+			return g.String(), nil
 		}
 	} else if strings.HasPrefix(Data, "random:") {
 		// Handles random-ness.

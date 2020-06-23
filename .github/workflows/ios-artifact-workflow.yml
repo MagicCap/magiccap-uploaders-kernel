@@ -14,17 +14,11 @@ jobs:
         name: "Get any dependencies"
         run: "go get ."
       -
-        name: "Clone a fork of a repository which contains a iOS build of PCRE"
-        run: "git clone https://github.com/JakeMakesStuff/news-iOS-App"
-      -
-        name: "Copy out the PCRE folder and remove the rest"
-        run: "cp -r ./news-iOS-App/pcre ~/pcre && rm -rf ./news-iOS-App"
-      -
         name: "Install gomobile"
         run: "go get golang.org/x/mobile/cmd/gomobile && PATH=\"$PATH:$HOME/go/bin\" gomobile init"
       -
         name: "Create the iOS framework"
-        run: 'C_INCLUDE_PATH="$HOME/pcre/include" LIBRARY_PATH="$HOME/pcre/lib" PATH="$PATH:$HOME/go/bin" gomobile bind -target ios'
+        run: 'PATH="$PATH:$HOME/go/bin" gomobile bind -target ios'
       -
         name: "zip the framework build"
         run: "zip -vr ios_kernel.zip MagicCapKernel.framework/"
