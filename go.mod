@@ -3,7 +3,7 @@ module github.com/magiccap/magiccap-uploaders-kernel
 go 1.14
 
 require (
-	github.com/antchfx/xmlquery v1.2.4
+	github.com/antchfx/xmlquery v1.3.1
 	github.com/aws/aws-sdk-go v1.32.7
 	github.com/dlclark/regexp2 v1.2.0
 	github.com/jakemakesstuff/structuredhttp v0.0.0-20200614104234-f8e4b2aebe68
